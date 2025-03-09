@@ -1,13 +1,13 @@
 const Person = require('./person.js') // Assuming person.js contains the Person class
 
 class Student extends Person {
-  constructor (lastName, firstName, school, dateOfBirth, username) {
+  constructor(lastName, firstName, school, dateOfBirth, username) {
     super(lastName, firstName, school, dateOfBirth, username, 'student')
     this.courseList = [] // list of offering objects
     this.transcript = {} // course:grade
   }
 
-  list_courses () {
+  list_courses() {
     const ordered = Object.keys(this.transcript)
       .sort((a, b) => {
         const yearComparison = b.year - a.year
@@ -17,7 +17,7 @@ class Student extends Person {
     return ordered
   }
 
-  get credits () {
+  get credits() {
     let total = 0
     for (const x of this.courseList) {
       total += x.course.credits
@@ -25,7 +25,7 @@ class Student extends Person {
     return total
   }
 
-  get gpa () {
+  get gpa() {
     let earned = 0
     let available = 0
 
@@ -56,14 +56,14 @@ class Student extends Person {
     return GPA
   }
 
-  toString () {
+  toString() {
     return ('\n' + 'Student Name: ' + this.firstName + ' ' + this.lastName + '\n' +
-            'School: ' + this.school.name + '\n' +
-            'DOB: ' + this.dateOfBirth.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) + '\n' +
-            'Username: ' + this.userName + '\n' +
-            'Email: ' + this.email + '\n' +
-            'GPA: ' + this.gpa + '\n' +
-            'Credits: ' + this.credits + '\n')
+      'School: ' + this.school.name + '\n' +
+      'DOB: ' + this.dateOfBirth.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) + '\n' +
+      'Username: ' + this.userName + '\n' +
+      'Email: ' + this.email + '\n' +
+      'GPA: ' + this.gpa + '\n' +
+      'Credits: ' + this.credits + '\n')
   }
 }
 

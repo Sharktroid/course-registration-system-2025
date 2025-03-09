@@ -1,7 +1,7 @@
 const Student = require('./student.js')
 
 class CourseOffering {
-  constructor (course, sectionNumber, year, quarter) {
+  constructor(course, sectionNumber, year, quarter) {
     this.course = course
     this.sectionNumber = sectionNumber
     this.instructor = null
@@ -11,18 +11,18 @@ class CourseOffering {
     this.grades = {}
   }
 
-  register_students (students) {
+  register_students(students) {
     for (const student of students) {
       this.registeredStudents.push(student)
       student.courseList.push(this)
     }
   }
 
-  get_students () {
+  get_students() {
     return this.registeredStudents
   }
 
-  submit_grade (student, grade) {
+  submit_grade(student, grade) {
     const validGrades = ['A+', 'A', 'A-', 'B+', 'B', 'B-', 'C+', 'C', 'C-', 'D+', 'D', 'D-', 'F']
     if (student instanceof Student && validGrades.includes(grade)) {
 
@@ -39,7 +39,7 @@ class CourseOffering {
 
 
 
-  get_grade (student) {
+  get_grade(student) {
     if (student instanceof Student) {
       return this.grades[student.userName]
     } else {
@@ -47,7 +47,7 @@ class CourseOffering {
     }
   }
 
-  toString () {
+  toString() {
     if (this.instructor) {
       return `${this.course.name}, ${this.course.department} ${this.course.number}-${this.sectionNumber}, ${this.instructor.firstName} ${this.instructor.lastName} (${this.quarter} ${this.year})`
     } else {

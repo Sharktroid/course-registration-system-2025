@@ -1,13 +1,13 @@
 const Person = require('./person.js')
 
 class Instructor extends Person {
-  constructor (lastName, firstName, school, dateOfBirth, username) {
+  constructor(lastName, firstName, school, dateOfBirth, username) {
     super(lastName, firstName, school, dateOfBirth, username, 'instructor')
     // key = this.course.name
     this.course_list = []
   }
 
-  list_courses (year = null, quarter = null) {
+  list_courses(year = null, quarter = null) {
     if (year !== null && quarter !== null) { // filter by year and quarter
       const filtered = this.course_list.filter(course => course.year === year && course.quarter === quarter) // filters
       const sorted = filtered.sort((a, b) => new Date(b.year, b.quarter) - new Date(a.year, a.quarter)) // sorts
@@ -26,11 +26,11 @@ class Instructor extends Person {
     }
   }
 
-  toString () {
+  toString() {
     return ('\n' + 'Instructor Name: ' + this.firstName + ' ' + this.lastName + '\n' +
-            'School: ' + this.school.name + '\n' +
-            'DOB: ' + this.dateOfBirth.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) + '\n' +
-            'Username: ' + this.userName + '\n')
+      'School: ' + this.school.name + '\n' +
+      'DOB: ' + this.dateOfBirth.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) + '\n' +
+      'Username: ' + this.userName + '\n')
   }
 }
 

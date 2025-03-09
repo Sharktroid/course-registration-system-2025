@@ -4,7 +4,7 @@ const CourseOffering = require('./course-offering.js')
 const Instructor = require('./instructor.js')
 
 class Institution {
-  constructor (name, domain) {
+  constructor(name, domain) {
     this.name = name
     this.domain = domain
     this.studentList = {}
@@ -13,7 +13,7 @@ class Institution {
     this.facultyList = {}
   }
 
-  listStudents () {
+  listStudents() {
     console.log(`\nEnrolled Students (${this.name})\n-------------------------------------------`)
 
     const studentList = Object.values(this.studentList).map(student => `${student.lastName}, ${student.firstName}`)
@@ -24,7 +24,7 @@ class Institution {
     console.log('\n')
   }
 
-  enroll_student (student) {
+  enroll_student(student) {
     if (student instanceof Student) {
       if (student.username in this.studentList) {
         console.log(`${student.firstName} ${student.lastName} is already enrolled!`)
@@ -36,7 +36,7 @@ class Institution {
     }
   }
 
-  register_student_for_course (student, courseName, dept, number, sectionNumber, year, quarter) {
+  register_student_for_course(student, courseName, dept, number, sectionNumber, year, quarter) {
     for (const offering of this.courseSchedule[courseName]) {
       if (dept === offering.course.department && number === offering.course.number && year === offering.year && quarter === offering.quarter && sectionNumber === offering.sectionNumber) {
         if (student in this.studentList) {
@@ -50,7 +50,7 @@ class Institution {
     }
   }
 
-  list_instructors () {
+  list_instructors() {
     console.log(`\nInstructor List (${this.name})\n-------------------------------------------`)
     const facultyList = Object.values(this.facultyList).map(instructor => `${instructor.lastName}, ${instructor.firstName}`)
     const sortedFacultyList = facultyList.sort()
@@ -58,7 +58,7 @@ class Institution {
     console.log('\n')
   }
 
-  hire_instructor (instructor) {
+  hire_instructor(instructor) {
     if (instructor instanceof Instructor) {
       if (instructor.username in this.facultyList) {
         console.log(`${instructor.firstName} ${instructor.lastName} already works at this institution!`)
@@ -70,7 +70,7 @@ class Institution {
     }
   }
 
-  assign_instructor (instructor, courseName, dept, number, sectionNumber, year, quarter) {
+  assign_instructor(instructor, courseName, dept, number, sectionNumber, year, quarter) {
     for (const offering of this.courseSchedule[courseName]) {
       if (dept === offering.course.department && number === offering.course.number && year === offering.year && quarter === offering.quarter && sectionNumber === offering.sectionNumber) {
         if (offering.instructor === instructor) {
@@ -86,7 +86,7 @@ class Institution {
     }
   }
 
-  list_course_catalog () {
+  list_course_catalog() {
     console.log(`\nCourse Catalog (${this.name})\n----------------------------------------`)
     for (const course of Object.values(this.courseCatalog)) {
       console.log(course)
@@ -94,7 +94,7 @@ class Institution {
     console.log('\n')
   }
 
-  list_course_schedule (year, quarter, dept = null) {
+  list_course_schedule(year, quarter, dept = null) {
     if (dept) {
       const schedule = []
       console.log(`\nCourse Schedule (${dept}, ${quarter} ${year})\n----------------------------------------`)
@@ -126,7 +126,7 @@ class Institution {
     }
   }
 
-  list_registered_students (courseName, dept, number, sectionNumber, year, quarter) {
+  list_registered_students(courseName, dept, number, sectionNumber, year, quarter) {
     for (const offering of this.courseSchedule[courseName]) {
       if (dept === offering.course.department && number === offering.course.number && year === offering.year && quarter === offering.quarter && sectionNumber === offering.sectionNumber) {
         console.log(`Registered Students List (${offering})\n------------------------------------------------------------`)
@@ -137,7 +137,7 @@ class Institution {
     }
   }
 
-  add_course (course) {
+  add_course(course) {
     if (course instanceof Course) {
       if (course.name in this.courseCatalog) {
         return 'Course has already been added'
@@ -149,7 +149,7 @@ class Institution {
     }
   }
 
-  add_course_offering (courseOffering) {
+  add_course_offering(courseOffering) {
     if (courseOffering instanceof CourseOffering) {
       if (courseOffering.course.name in this.courseCatalog) {
         this.courseSchedule[courseOffering.course.name] = this.courseSchedule[courseOffering.course.name] || []
