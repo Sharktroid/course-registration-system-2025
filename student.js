@@ -1,8 +1,8 @@
 const Person = require('./person.js') // Assuming person.js contains the Person class
 
 class Student extends Person {
-  constructor(lastName, firstName, school, dateOfBirth, username) {
-    super(lastName, firstName, school, dateOfBirth, username, 'student')
+  constructor(lastName, firstName, school, dateOfBirth, userName) {
+    super(lastName, firstName, school, dateOfBirth, userName, 'student')
     this.courseList = [] // list of offering objects
     this.transcript = {} // course:grade
   }
@@ -46,7 +46,7 @@ class Student extends Person {
     }
 
     for (const x of this.courseList) {
-      if (this.username in x.grades) { // check to see if a grade has already been submitted
+      if (this.userName in x.grades) { // check to see if a grade has already been submitted
         earned += (gradeScale[x.get_grade(this)] * x.course.credits)
         available += x.course.credits
       }
@@ -60,7 +60,7 @@ class Student extends Person {
     return ('\n' + 'Student Name: ' + this.firstName + ' ' + this.lastName + '\n' +
       'School: ' + this.school.name + '\n' +
       'DOB: ' + this.dateOfBirth.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) + '\n' +
-      'Username: ' + this.userName + '\n' +
+      'userName: ' + this.userName + '\n' +
       'Email: ' + this.email + '\n' +
       'GPA: ' + this.gpa + '\n' +
       'Credits: ' + this.credits + '\n')
